@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Event Registration</h2>
+
+<form id="form">
+    Name:
+    <input type="text" name="name">
+    <span id="nameError"></span>
+    <br><br>
+    Email:
+    <input type="text" name="email">
+    <span id="emailError"></span>
+    <br><br>
+    Event:
+    <select name="event">
+        <option>Music Show</option>
+        <option>Tech Talk</option>
+    </select>
+    <br><br>
+    <button type="submit">Register</button>
+</form>
+<script>
+let form = document.getElementById("form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    let name = form.elements["name"].value;
+    let email = form.elements["email"].value;
+    let eventName = form.elements["event"].value;
+    document.getElementById("nameError").innerHTML = "";
+    document.getElementById("emailError").innerHTML = "";
+    if(name == "") {
+        document.getElementById("nameError").innerHTML="Enter Name";
+    }
+    if(email == ""){
+        document.getElementById("emailError").innerHTML=" Enter Email";
+    }
+    console.log(name, email, eventName);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modern JavaScript</title>
+</head>
+<body>
+    <h1>Modern JS Features</h1>
+    <script>
+        const events = [
+            { name: "Music Show", category: "Music" },
+            { name: "Tech Talk", category: "Tech" },
+            { name: "Dance Event", category: "Dance" }
+        ];
+        function addEvent(
+            name = "New Event",
+            category = "General"
+        ) {
+            console.log(name, category);
+        }
+        addEvent();
+        let event = events[0];
+        const { name, category } = event;
+        console.log(name);
+        console.log(category);
+        let copyEvents = [...events];
+        let musicEvents = copyEvents.filter(
+            event => event.category === "Music"
+        );
+        console.log(musicEvents);
+    </script>
+
+</body>
+</html>

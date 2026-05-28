@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button onclick="sendData()">Register</button>
+<p id="msg"></p>
+
+<script>
+function sendData() {
+    document.getElementById("msg").innerHTML =
+        "Sending...";
+    setTimeout(function() {
+        fetch("https://jsonplaceholder.typicode.com/posts", {
+            method: "POST",
+            body: JSON.stringify({
+                name: "Sasi",
+                event: "Music Show"
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("msg").innerHTML =
+                " Registration Success";
+            console.log(data);
+        })
+        .catch(error => {
+            document.getElementById("msg").innerHTML =
+                " Registration Failed";
+        });
+    }, 2000);
+}
+</script>
+</body>
+</html>

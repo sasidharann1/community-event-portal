@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Handling</title>
+</head>
+<body>
+    <h1>Community Events</h1>
+    <select id="category">
+        <option value="All">All</option>
+        <option value="Music">Music</option>
+        <option value="Tech">Tech</option>
+    </select>
+    <input type="text" id="search" placeholder="Search Event">
+    <div id="events"></div>
+    <script >
+let events=[
+    {name:"Music Show",category:"Music" },
+    {name:"Tech Talk",category:"Tech" },
+    {name:"Music Night",category:"Music" }
+];
+let eventDiv = document.getElementById("events");
+function showEvents(data) {
+    eventDiv.innerHTML = "";
+    data.forEach(function(event) {
+        let card = document.createElement("div");
+        card.innerHTML =
+            "<h3>" + event.name + "</h3>" +
+            "<p>" + event.category + "</p>" +
+            "<button>Register</button>";
+        let btn = card.querySelector("button");
+        btn.onclick = function() {
+            alert("Registered for " + event.name);
+        };
+        eventDiv.appendChild(card);
+    });
+}
+showEvents(events);
+document.getElementById("category").onchange = function() {
+    let value = this.value;
+    if (value == "All") {
+        showEvents(events);
+    } else {
+        let filtered = events.filter(function(event) {
+            return event.category == value;
+        });
+        showEvents(filtered);
+    }
+};
+document.getElementById("search").onkeydown = function() {
+    let text = this.value.toLowerCase();
+    let result = events.filter(function(event) {
+        return event.name.toLowerCase().includes(text);
+    });
+    showEvents(result);
+};
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Async JavaScript</title>
+</head>
+<body>
+
+    <h1>Community Events</h1>
+    <p id="loading">Loading...</p>
+    <div id="events"></div>
+    <script>
+        let loading = document.getElementById("loading");
+        let eventsDiv = document.getElementById("events");
+        async function loadEvents() {
+            try {
+                loading.style.display = "block";
+                let response = await fetch(
+                    "https://jsonplaceholder.typicode.com/users"
+                );
+                let data = await response.json();
+                loading.style.display = "none";
+                data.forEach(function(event) {
+                    let p = document.createElement("p");
+                    p.textContent = event.name;
+                    eventsDiv.appendChild(p);
+                });
+            }
+            catch(error) {
+                console.log("Error:", error);
+            }
+        }
+        loadEvents();
+    </script>
+</body>
+</html>
